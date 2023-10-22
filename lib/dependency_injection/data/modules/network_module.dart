@@ -1,7 +1,6 @@
 import 'package:flutter_base_project/core/utils/constants.dart';
 import 'package:flutter_base_project/core/utils/network/configs/dio_configs.dart';
 import 'package:flutter_base_project/core/utils/network/interceptors/auth_interceptor.dart';
-import 'package:flutter_base_project/core/utils/network/interceptors/dio_retry_interceptor.dart';
 import 'package:flutter_base_project/core/utils/network/provider/dio_client.dart';
 import 'package:flutter_base_project/core/utils/network/rest_client.dart';
 import 'package:flutter_base_project/core/utils/shared-preference/shared_preference_helper.dart';
@@ -19,6 +18,8 @@ mixin NetworkModule {
       AuthInterceptor(
         accessToken: () async =>
             await getIt<SharedPreferenceHelper>().authToken,
+        refreshToken: () async =>
+            await getIt<SharedPreferenceHelper>().refreshToken,
       ),
     );
 
@@ -38,7 +39,6 @@ mixin NetworkModule {
         ..addInterceptors(
           [
             getIt<AuthInterceptor>(),
-            getIt<RetryInterceptor>(),
             // getIt<ErrorInterceptor>(),
             // getIt<LoggingInterceptor>(),
           ],
