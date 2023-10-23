@@ -5,6 +5,7 @@ import 'package:flutter_base_project/core/utils/network/provider/dio_client.dart
 import 'package:flutter_base_project/core/utils/network/rest_client.dart';
 import 'package:flutter_base_project/core/utils/shared-preference/shared_preference_helper.dart';
 import 'package:flutter_base_project/dependency_injection/service_locator.dart';
+import 'package:flutter_base_project/features/authentication/data/data_source/remote/authentication_api_provider.dart';
 
 mixin NetworkModule {
   static Future<void> configureNetworkModuleInjection() async {
@@ -46,6 +47,6 @@ mixin NetworkModule {
     );
 
     // api's:-------------------------------------------------------------------
-    //  getIt.registerSingleton(PostApi(getIt<DioClient>(), getIt<RestClient>()));
+    getIt.registerSingleton(AuthenticationApiProvider(getIt<DioClient>()));
   }
 }

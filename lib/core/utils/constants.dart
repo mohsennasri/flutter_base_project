@@ -9,5 +9,6 @@ class Endpoints {
   static const int connectionTimeout = 30000;
 
   // Api urls
-  static const String refreshToken = "$baseUrl/refresh-token";
+  static const String refreshTokenUrl = "$baseUrl/refresh-token";
+  static const String loginUrl = "$baseUrl/refresh-token";
 }

@@ -47,7 +47,7 @@ class AuthInterceptor extends Interceptor {
   }
 
   Future<Response<dynamic>> handleRefreshToken() async {
-    var response = await dio.post(Endpoints.refreshToken,
+    var response = await dio.post(Endpoints.refreshTokenUrl,
         options: Options(headers: {"Refresh-Token": refreshToken}));
     // on success response, deserialize the response
     if (response.statusCode == 200) {
