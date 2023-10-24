@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_base_project/core/widgets/main_wrapper.dart';
 import 'package:flutter_base_project/di/service_locator.dart';
-import 'package:flutter_base_project/features/authentication/presentation/bloc/authentication_bloc.dart';
+import 'package:flutter_base_project/features/authentication/presentation/bloc/login/login_bloc.dart';
 import 'package:flutter_base_project/l10n/l10n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -14,7 +14,7 @@ Future<void> main() async {
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(
-        create: (_) => getIt<AuthenticationBloc>(),
+        create: (_) => getIt<LoginBloc>(),
       ),
     ],
     child: const MyApp(),
@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
+        initialRoute: "/",
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
@@ -45,13 +46,6 @@ class MyApp extends StatelessWidget {
         ],
         supportedLocales: L10n.all,
         locale: const Locale('en'),
-        home: MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (_) => getIt<AuthenticationBloc>(),
-            ),
-          ],
-          child: const MainWrapper(),
-        ));
+        home: const MainWrapper());
   }
 }
